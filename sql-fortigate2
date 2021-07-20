@@ -1,0 +1,18 @@
+CREATE TABLE IF NOT EXISTS `Fortigate2` (
+`ID` INT( 10 ) UNSIGNED NOT NULL AUTO_INCREMENT ,
+`log_time` DATETIME NOT NULL ,
+`log_id` INT( 10 ) UNSIGNED NOT NULL ,
+`type` VARCHAR( 20 ) NOT NULL ,
+`subtype` VARCHAR( 20 ) NOT NULL ,
+`pri` VARCHAR( 20 ) NOT NULL ,
+`vd` VARCHAR( 20 ) NOT NULL ,
+`msg` VARCHAR( 100 ) NOT NULL ,
+`action` VARCHAR( 20 ) NOT NULL ,
+`user` VARCHAR( 20 ) NOT NULL ,
+`status` VARCHAR( 20 ) NOT NULL ,
+`reason` VARCHAR( 20 ) NOT NULL ,
+`ui` VARCHAR( 20 ) NOT NULL ,
+PRIMARY KEY ( `ID` ))
+ENGINE = MYISAM DEFAULT CHARSET = utf8 AUTO_INCREMENT =1;
+
+$template fortigate2, "insert into Fortigate2 (log_time,log_id,type,subtype,pri,vd,msg,action,user,status,reason) values ('%timegenerated:::date-mysql%','%msg:R,ERE,1,BLANK:log_id=([a-zA-Z0-9]+)--end%','%msg:R,ERE,1,BLANK:type=([a-zA-Z0-9]+)--end%','%msg:R,ERE,1,BLANK:subtype=([a-zA-Z0-9]+)--end%','%msg:R,ERE,1,BLANK:pri=([a-zA-Z0-9]+)--end%','%msg:R,ERE,1,BLANK:vd=([a-zA-Z0-9]+)--end%','%msg:R,ERE,1,BLANK:msg=([a-zA-Z0-9() .]+)--end%','%msg:R,ERE,1,BLANK:action=([a-zA-Z0-9]+)--end%','%msg:R,ERE,1,BLANK:user="([a-zA-Z0-9]"+)--end%','%msg:R,ERE,1,BLANK:status=([a-zA-Z0-9]+)--end%','%msg:R,ERE,1,BLANK:reason=([a-zA-Z0-9"_]+)--end%')", SQL 
